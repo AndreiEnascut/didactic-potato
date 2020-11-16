@@ -1,0 +1,22 @@
+{
+  "name": "didactic-potato",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "serve": "http-server -p 3000 -c -1 -o --cors='*'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreiEnascut/didactic-potato.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreiEnascut/didactic-potato/issues"
+  },
+  "homepage": "https://github.com/AndreiEnascut/didactic-potato#readme",
+  "devDependencies": {
+    "http-server": "^0.12.3"
+  }
+}
