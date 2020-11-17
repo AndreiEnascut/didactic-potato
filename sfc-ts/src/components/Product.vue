@@ -46,7 +46,7 @@ import ProductTabs from "./ProductTabs.vue";
   },
 })
 export default class Product extends Vue {
-  @Prop({ required: true }) premium = true;
+  @Prop({ required: true }) premium?: boolean;
 
   product = "Socks";
   brand = "Vue Mastery";

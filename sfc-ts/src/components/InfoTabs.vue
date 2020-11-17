@@ -28,7 +28,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class InfoTabs extends Vue {
-  @Prop({required: true}) shipping = true;
+  @Prop({required: true}) shipping?: string;
   @Prop({required: true}) details: Array<string> = []
   
   tabs = ["Shipping", "Details"];
