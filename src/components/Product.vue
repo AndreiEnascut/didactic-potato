@@ -45,6 +45,8 @@
     import {ProductReviewProps} from "@/components/Reviews/ProductReviewProps";
     import InfoTabs from "./InfoTabs.vue";
     import ProductTabs from "./ProductTabs.vue";
+    import {apiResource, getStuff} from "@/api/apiService";
+    import {AxiosResponse} from "axios";
 
     @Component({
         components: {
@@ -102,6 +104,21 @@
                 return "Free";
             }
             return 2.99;
+        }
+
+        created() {
+            // TODO - custom query param request .. add type to that object
+            const axiosResponsePromise: Promise<AxiosResponse> = getStuff(apiResource.HOUSES);
+
+            axiosResponsePromise
+                .then(response => {
+                    // eslint-disable-next-line no-console
+                    console.log(response);
+                })
+                .catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error);
+                })
         }
 
         mounted() {
