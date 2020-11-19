@@ -26,6 +26,10 @@
         <div v-show="selectedTab === 'Make a Review'">
             <product-review/>
         </div>
+
+        <div v-show="selectedTab === 'Other'">
+            <other-tabs/>
+        </div>
     </div>
 </template>
 
@@ -33,16 +37,18 @@
     import { Component, Prop, Vue } from "vue-property-decorator";
     import ProductReview from "./Reviews/ProductReview.vue";
     import {ProductReviewProps} from "./Reviews/ProductReviewProps";
+    import OtherTabs from "@/components/OtherTabs.vue";
 
     @Component({
         components: {
+            OtherTabs,
             ProductReview,
         },
     })
     export default class ProductTabs extends Vue {
         @Prop({ required: true }) public reviews!: ProductReviewProps;
 
-        tabs = ["Reviews", "Make a Review"];
+        tabs = ["Reviews", "Make a Review", "Other"];
         selectedTab = "Reviews";
     }
 </script>

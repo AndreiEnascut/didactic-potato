@@ -33,6 +33,8 @@
                 @click="addToCart">
                 Add to cart
             </button>
+
+            <buybox/>
         </div>
 
         <product-tabs :reviews="reviews"/>
@@ -45,13 +47,15 @@
     import {ProductReviewProps} from "@/components/Reviews/ProductReviewProps";
     import InfoTabs from "./InfoTabs.vue";
     import ProductTabs from "./ProductTabs.vue";
-    import {apiResource, getStuff} from "@/api/apiService";
-    import {AxiosResponse} from "axios";
+    import {ActionTypes} from "@/store";
+    import {apiResource} from "@/api/apiService";
+    import Buybox from "@/components/Buybox.vue";
 
     @Component({
         components: {
+            Buybox,
             InfoTabs,
-            ProductTabs,
+            ProductTabs
         },
     })
     export default class Product extends Vue {
@@ -107,18 +111,9 @@
         }
 
         created() {
-            // TODO - custom query param request .. add type to that object
-            const axiosResponsePromise: Promise<AxiosResponse> = getStuff(apiResource.HOUSES);
-
-            axiosResponsePromise
-                .then(response => {
-                    // eslint-disable-next-line no-console
-                    console.log(response);
-                })
-                .catch(error => {
-                    // eslint-disable-next-line no-console
-                    console.log(error);
-                })
+            this.$store.dispatch(ActionTypes.FETCH_DATA, {
+                type: apiResource.HOUSES
+            });
         }
 
         mounted() {
