@@ -1,53 +1,110 @@
 <template>
-    <section>
-        hello
-    </section>
+    <div>
+        <div class="nav-bar"></div>
+
+        <div id="app">
+            <div class="cart">
+                <p>Cart({{ cart.length }})</p>
+            </div>
+            <Product :premium="premium"
+                     @add-to-cart="updateCart"/>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue'
     import Component from "nuxt-class-component";
+    import Product from "~/components/Product.vue";
 
-    @Component
-    export default class Index extends Vue {}
+    @Component({
+        components: {
+            Product
+        }
+    })
+    export default class Index extends Vue {
+        premium = true;
+        cart: number[] = [];
+        updateCart(id: number) {
+            this.cart.push(id);
+        }
+    }
 </script>
 
 <style>
-    .container {
-        margin: 0 auto;
-        min-height: 100vh;
+    body {
+        font-family: tahoma,serif;
+        color: #282828;
+        margin: 0;
+    }
+    .nav-bar {
+        background: linear-gradient(-90deg, #84cf6a, #16c0b0);
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    .product {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+        flex-flow: wrap;
+        padding: 1rem;
     }
-
-    .title {
-        font-family: 'Quicksand',
-        'Source Sans Pro',
-        -apple-system,
-        BlinkMacSystemFont,
-        'Segoe UI',
-        Roboto,
-        'Helvetica Neue',
-        Arial,
-        sans-serif;
-        display: block;
-        font-weight: 300;
-        font-size: 100px;
-        color: #35495e;
-        letter-spacing: 1px;
+    img {
+        border: 1px solid #d8d8d8;
+        width: 70%;
+        margin: 40px;
+        box-shadow: 0 0.5px 1px #d8d8d8;
     }
-
-    .subtitle {
-        font-weight: 300;
-        font-size: 42px;
-        color: #526488;
-        word-spacing: 5px;
-        padding-bottom: 15px;
+    .product-image {
+        width: 80%;
     }
-
-    .links {
-        padding-top: 15px;
+    .product-image,
+    .product-info {
+        margin-top: 10px;
+        width: 50%;
+    }
+    .color-box {
+        width: 40px;
+        height: 40px;
+        margin-top: 5px;
+    }
+    .cart {
+        margin-right: 25px;
+        float: right;
+        border: 1px solid #d8d8d8;
+        padding: 5px 20px;
+    }
+    button {
+        margin-top: 30px;
+        border: none;
+        background-color: #1e95ea;
+        color: white;
+        height: 40px;
+        width: 100px;
+        font-size: 14px;
+    }
+    .disabledButton {
+        background-color: #d8d8d8;
+    }
+    .review-form {
+        width: 400px;
+        padding: 20px;
+        margin: 40px;
+        border: 1px solid #d8d8d8;
+    }
+    input {
+        width: 100%;
+        height: 25px;
+        margin-bottom: 20px;
+    }
+    textarea {
+        width: 100%;
+        height: 60px;
+    }
+    .tabs {
+        margin-left: 20px;
+        cursor: pointer;
+    }
+    .activeTab {
+        color: #16c0b0;
+        text-decoration: underline;
     }
 </style>
